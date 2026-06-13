@@ -119,33 +119,8 @@ Use Hermes Rules Kit in two ways:
 
 Use this when you want the fastest possible adoption in ChatGPT, Claude, Cursor, Codex, or any agent that accepts custom instructions.
 
-Copy this block:
-
-```md
-You are an execution-focused AI agent.
-
-Rules:
-- Use tools when tools can settle the question.
-- Read target files before editing them.
-- Inspect repo/runtime/context before choosing an approach for non-trivial tasks.
-- Prefer root-cause fixes over symptom patches.
-- Make the smallest effective change.
-- Verify results before claiming success.
-- Match proof to claim strength: code edit != runtime proof, build pass != user-surface proof.
-- Separate status clearly: changed, verified, unverified, blocked, assumption.
-- Do not claim fixed, working, or done without naming proof.
-- Keep context clean: compress or drop stale details.
-- Do not mix assumptions across different projects.
-- Verify important side effects directly when possible: files written, processes started, endpoints responding, UI changed.
-
-Default loop for non-trivial tasks:
-1. define the outcome operationally
-2. inspect the repo/runtime first
-3. locate the owner of the behavior
-4. make the smallest coherent change
-5. verify at the surface the user experiences
-6. report what changed, what was verified, and what remains unverified
-```
+Copy the block from:
+- `templates/paste-into-your-agent.md`
 
 What this gives you:
 - immediate improvement in agent discipline
@@ -156,15 +131,20 @@ What this gives you:
 
 Use this when you want persistent, versioned behavior for one codebase.
 
-1. Copy `templates/AGENTS.template.md` to `AGENTS.md` in the target repo.
-2. Edit only the project-specific sections.
-3. Keep the universal law compact.
-4. Put deeper workflow details in docs or modular skills, not in the always-on core.
+Choose one template:
+1. `templates/AGENTS.template.md` for the fuller default operating law
+2. `templates/minimal-AGENTS.template.md` for a shorter starting point
+
+Then:
+3. Copy the chosen template to `AGENTS.md` in the target repo.
+4. Edit only the project-specific sections.
+5. Keep the universal law compact.
+6. Put deeper workflow details in docs or modular skills, not in the always-on core.
 
 Minimal shell example:
 
 ```bash
-cp templates/AGENTS.template.md /path/to/your-repo/AGENTS.md
+cp templates/minimal-AGENTS.template.md /path/to/your-repo/AGENTS.md
 ```
 
 Then adapt:
@@ -187,9 +167,11 @@ After the base install, use deeper overlays selectively:
 ### Recommended adoption path
 
 If you want the fastest path:
-1. start with **Paste mode**
+1. start with **Paste mode** using `templates/paste-into-your-agent.md`
 2. if it proves useful, move to **Repo mode** with `AGENTS.md`
-3. add verifier/research/multimodal overlays only when the task needs them
+3. start with `templates/minimal-AGENTS.template.md` if you want lower prompt weight
+4. switch to `templates/AGENTS.template.md` if you want the fuller default law
+5. add verifier/research/multimodal overlays only when the task needs them
 
 ## Recommended path
 
@@ -247,6 +229,8 @@ Do not say fixed, working, or done without proof immediately after.
 - `docs/verifier-spec.md` — adversarial validation workflow
 - `docs/research-spec.md` — deep research workflow
 - `templates/AGENTS.template.md` — default repo-level operating law
+- `templates/minimal-AGENTS.template.md` — shorter repo-level starting point
+- `templates/paste-into-your-agent.md` — compact copy-paste block for custom instructions
 - `templates/closeout-template.md` — standard completion summary format
 - `examples/` — concrete report and closeout shapes
 - `skills/` — public mirror of the local Hermes skill set
