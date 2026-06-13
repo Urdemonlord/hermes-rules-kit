@@ -2,7 +2,7 @@
 
 [![Release](https://img.shields.io/github/v/release/Urdemonlord/hermes-rules-kit?display_name=tag)](https://github.com/Urdemonlord/hermes-rules-kit/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![Status](https://img.shields.io/badge/status-v0.1.0-informational)](./ROADMAP.md)
+[![Status](https://img.shields.io/badge/status-v0.1.1-informational)](./ROADMAP.md)
 
 Agent execution framework with a Hermes-native reference implementation for grounded coding, verification, research, and multimodal proof.
 
@@ -286,7 +286,7 @@ That means:
 ## Release
 
 Current public release target:
-- `v0.1.0` — base kit, core docs, templates, examples, and mirrored skills
+- `v0.1.1` — portability framing, verification contract tightening, and failure-mode library
 
 ## Contributing
 
