@@ -10,6 +10,8 @@ This is not a persona pack.
 This is not motivational prompt fluff.
 This is an execution framework for making Hermes more reliable under real tool use.
 
+![Hermes Rules Kit social preview](./assets/social-preview.png)
+
 ## What problem this solves
 
 Most agent failures are not intelligence failures. They are operating-discipline failures:
@@ -33,8 +35,13 @@ hermes-rules-kit/
 ├── README.md
 ├── ROADMAP.md
 ├── CONTRIBUTING.md
+├── assets/
+│   ├── social-preview.svg
+│   └── social-preview.png
 ├── docs/
 │   ├── philosophy.md
+│   ├── core-runtime-law.md
+│   ├── architecture.md
 │   ├── verification-contract.md
 │   ├── hermes-tool-mapping.md
 │   ├── verifier-spec.md
@@ -51,6 +58,7 @@ hermes-rules-kit/
 │   └── project-agnostic-AGENTS.md
 └── skills/
     ├── README.md
+    ├── index.md
     ├── hermes-agentic-coding-20-80/
     ├── hermes-verifier-mode/
     ├── hermes-deep-research-loop/
@@ -166,6 +174,8 @@ Do not say fixed, working, or done without proof immediately after.
 ## Repo map
 
 - `docs/philosophy.md` — why the kit exists
+- `docs/core-runtime-law.md` — smallest always-on execution contract
+- `docs/architecture.md` — how docs, templates, examples, and skills fit together
 - `docs/verification-contract.md` — proof language and claim discipline
 - `docs/verifier-spec.md` — adversarial validation workflow
 - `docs/research-spec.md` — deep research workflow
@@ -173,6 +183,7 @@ Do not say fixed, working, or done without proof immediately after.
 - `templates/closeout-template.md` — standard completion summary format
 - `examples/` — concrete report and closeout shapes
 - `skills/` — public mirror of the local Hermes skill set
+- `skills/index.md` — selection guide and comparison overview
 - `ROADMAP.md` — version path from v0.1 to broader maturity
 
 ## Philosophy
