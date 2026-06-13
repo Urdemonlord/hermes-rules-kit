@@ -111,18 +111,85 @@ Do not carry assumptions, conventions, or deployment habits from project A into 
 
 ## Quick start
 
-### Option A: use the project template
-Copy `templates/AGENTS.template.md` into a repo-level `AGENTS.md`, then adapt only the project-specific parts.
+Use Hermes Rules Kit in two ways:
+- **Paste mode** — copy a compact rules block into your AI agent's system prompt, custom instructions, or agent file
+- **Repo mode** — install a project-local `AGENTS.md` so the rules live with the codebase
 
-### Option B: use the local skills
-If you run Hermes locally, mirror or load the companion skills for:
-- coding discipline
-- verifier mode
-- deep research
-- multimodal proof
+### Option A: paste into your AI agent
 
-### Option C: use it as a house standard
-Adopt the docs, closeout template, and examples as your default operating model for engineering tasks.
+Use this when you want the fastest possible adoption in ChatGPT, Claude, Cursor, Codex, or any agent that accepts custom instructions.
+
+Copy this block:
+
+```md
+You are an execution-focused AI agent.
+
+Rules:
+- Use tools when tools can settle the question.
+- Read target files before editing them.
+- Inspect repo/runtime/context before choosing an approach for non-trivial tasks.
+- Prefer root-cause fixes over symptom patches.
+- Make the smallest effective change.
+- Verify results before claiming success.
+- Match proof to claim strength: code edit != runtime proof, build pass != user-surface proof.
+- Separate status clearly: changed, verified, unverified, blocked, assumption.
+- Do not claim fixed, working, or done without naming proof.
+- Keep context clean: compress or drop stale details.
+- Do not mix assumptions across different projects.
+- Verify important side effects directly when possible: files written, processes started, endpoints responding, UI changed.
+
+Default loop for non-trivial tasks:
+1. define the outcome operationally
+2. inspect the repo/runtime first
+3. locate the owner of the behavior
+4. make the smallest coherent change
+5. verify at the surface the user experiences
+6. report what changed, what was verified, and what remains unverified
+```
+
+What this gives you:
+- immediate improvement in agent discipline
+- minimal setup friction
+- model-agnostic adoption
+
+### Option B: install into your repo
+
+Use this when you want persistent, versioned behavior for one codebase.
+
+1. Copy `templates/AGENTS.template.md` to `AGENTS.md` in the target repo.
+2. Edit only the project-specific sections.
+3. Keep the universal law compact.
+4. Put deeper workflow details in docs or modular skills, not in the always-on core.
+
+Minimal shell example:
+
+```bash
+cp templates/AGENTS.template.md /path/to/your-repo/AGENTS.md
+```
+
+Then adapt:
+- product/project name
+- stack and runtime
+- deployment context
+- important paths
+- non-negotiable constraints
+- verification expectations
+
+### Option C: load deeper modules only when needed
+
+After the base install, use deeper overlays selectively:
+- `docs/verification-contract.md` for closeout language and proof discipline
+- `docs/hermes-tool-mapping.md` for Hermes-native tool behavior
+- `skills/hermes-verifier-mode/` for adversarial verification
+- `skills/hermes-deep-research-loop/` for research workflows
+- `skills/hermes-multimodal-proof/` for screenshot and visual proof
+
+### Recommended adoption path
+
+If you want the fastest path:
+1. start with **Paste mode**
+2. if it proves useful, move to **Repo mode** with `AGENTS.md`
+3. add verifier/research/multimodal overlays only when the task needs them
 
 ## Recommended path
 
