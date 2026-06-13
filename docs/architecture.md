@@ -8,22 +8,24 @@ The repo is intentionally split so the always-on core stays small while deeper w
 
 ## Layer model
 
-The repository has four main layers:
+The repository has five main layers:
 
-1. core law
-2. docs/specs
-3. templates/examples
-4. skills mirror
+1. execution framework core
+2. runtime adapters
+3. docs/specs
+4. templates/examples
+5. skills mirror
 
 These layers are complementary, not redundant.
 
-## 1. Core law
+## 1. Execution framework core
 
-Primary file:
+Primary files:
 - `docs/core-runtime-law.md`
+- `docs/verification-contract.md`
 
-This is the smallest always-on execution contract.
-It should stay compact enough to be adopted directly into AGENTS-level runtime guidance.
+This is the agent-agnostic operating contract.
+It should stay compact enough to be adopted directly into AGENTS-level runtime guidance or paste-mode instructions.
 
 Its job is to define non-negotiables such as:
 - tool-first proof
@@ -34,11 +36,30 @@ Its job is to define non-negotiables such as:
 - context hygiene
 - project isolation
 - side-effect verification
+- status language for closeout
 
 If a rule is universal and expensive to violate, it belongs here.
-If it is situational, role-specific, or detailed, it belongs deeper in the repo.
+If it depends on a particular tool surface, runtime, or product ecosystem, it belongs deeper in the repo.
 
-## 2. Docs and specs
+## 2. Runtime adapters
+
+Primary files:
+- `docs/portability.md`
+- `docs/hermes-tool-mapping.md`
+
+This layer translates the core into real runtimes.
+
+Right now the first serious adapter is Hermes.
+That means:
+- the core law stays portable
+- Hermes docs map the law onto concrete tool choices
+- future adapters can be added without rewriting the philosophy
+
+The adapter layer exists so the repo can be honest about portability.
+The framework is broader than Hermes.
+The implementation examples are not.
+
+## 3. Docs and specs
 
 Primary files:
 - `docs/philosophy.md`
@@ -47,6 +68,7 @@ Primary files:
 - `docs/verifier-spec.md`
 - `docs/research-spec.md`
 - `docs/migration-notes.md`
+- `docs/releases/v0.1.1.md`
 
 This layer explains the system.
 
@@ -57,20 +79,24 @@ Roles:
 - `verifier-spec.md` defines adversarial validation workflow
 - `research-spec.md` defines multi-step investigation workflow
 - `migration-notes.md` explains adaptation from other rule ecosystems without inheriting IDE-specific assumptions
+- `docs/releases/*.md` captures release-level deltas and packaging changes
 
 This layer is explanatory and normative.
 It gives rationale, shape, and role-specific detail.
 
-## 3. Templates and examples
+## 4. Templates and examples
 
 Primary files:
 - `templates/AGENTS.template.md`
+- `templates/minimal-AGENTS.template.md`
+- `templates/paste-into-your-agent.md`
 - `templates/closeout-template.md`
 - `examples/debugging-closeout.md`
 - `examples/verification-closeout.md`
 - `examples/verifier-report.md`
 - `examples/research-report.md`
 - `examples/project-agnostic-AGENTS.md`
+- `examples/failure-modes/*`
 
 This layer turns doctrine into usable artifacts.
 
@@ -89,7 +115,7 @@ Use examples when:
 - a contributor needs to understand expected tone and structure
 - a workflow is easier to learn from output than from abstract rules
 
-## 4. Skills mirror
+## 5. Skills mirror
 
 Primary files:
 - `skills/README.md`
@@ -116,6 +142,14 @@ Local Hermes runtime may load from `~/.hermes/skills/`, but the public repo need
 ### Core law -> template
 The core law is the conceptual source for `templates/AGENTS.template.md`.
 The template applies the law in a drop-in repo format.
+
+### Core law -> adapters
+The core law defines the invariant.
+Adapters define how the invariant is executed in a particular tool stack.
+
+### Portability doc -> Hermes tool mapping
+`portability.md` marks the boundary between transferable ideas and Hermes-native implementation.
+`hermes-tool-mapping.md` is the concrete adapter for the Hermes runtime.
 
 ### Verification contract -> verifier/report examples
 The verification contract defines the language.
@@ -175,10 +209,11 @@ For a new user or contributor:
 1. `README.md`
 2. `docs/core-runtime-law.md`
 3. `docs/verification-contract.md`
-4. `docs/hermes-tool-mapping.md`
-5. `templates/AGENTS.template.md`
-6. `skills/index.md`
-7. relevant examples/specs as needed
+4. `docs/portability.md`
+5. `docs/hermes-tool-mapping.md`
+6. `templates/AGENTS.template.md`
+7. `skills/index.md`
+8. relevant examples/specs as needed
 
 ## One-sentence summary
 

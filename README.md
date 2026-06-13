@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Status](https://img.shields.io/badge/status-v0.1.0-informational)](./ROADMAP.md)
 
-Hermes-native execution rules, templates, and skills for grounded coding, verification, research, and multimodal proof.
+Agent execution framework with a Hermes-native reference implementation for grounded coding, verification, research, and multimodal proof.
 
 This is not a persona pack.
 This is not motivational prompt fluff.
@@ -28,6 +28,16 @@ What it needs is a stricter contract for how those tools turn into action.
 
 Hermes Rules Kit provides that contract.
 
+## Positioning
+
+This repo has two layers:
+- **Execution framework core** — agent-agnostic rules about inspection, proof, status language, context hygiene, and root-cause debugging
+- **Hermes-native adapter** — concrete tool mappings, templates, and modular skills built around the Hermes runtime
+
+That split matters.
+The core ideas should transfer to other agent runtimes.
+The Hermes-specific pieces show one serious implementation target rather than pretending every tool stack behaves the same.
+
 ## What this repo contains
 
 ```text
@@ -39,6 +49,7 @@ hermes-rules-kit/
 │   ├── social-preview.svg
 │   └── social-preview.png
 ├── docs/
+│   ├── portability.md
 │   ├── philosophy.md
 │   ├── core-runtime-law.md
 │   ├── architecture.md
@@ -46,12 +57,23 @@ hermes-rules-kit/
 │   ├── hermes-tool-mapping.md
 │   ├── verifier-spec.md
 │   ├── research-spec.md
-│   └── migration-notes.md
+│   ├── migration-notes.md
+│   └── releases/
+│       └── v0.1.1.md
 ├── templates/
 │   ├── AGENTS.template.md
+│   ├── minimal-AGENTS.template.md
+│   ├── paste-into-your-agent.md
 │   └── closeout-template.md
 ├── examples/
 │   ├── debugging-closeout.md
+│   ├── failure-modes/
+│   │   ├── README.md
+│   │   ├── context-contamination-across-projects.md
+│   │   ├── service-claimed-up-without-health-check.md
+│   │   ├── stale-plan-after-tool-result.md
+│   │   ├── symptom-patch-instead-of-invariant-owner.md
+│   │   └── unverified-fixed-claim.md
 │   ├── verification-closeout.md
 │   ├── verifier-report.md
 │   ├── research-report.md
@@ -159,6 +181,7 @@ Then adapt:
 
 After the base install, use deeper overlays selectively:
 - `docs/verification-contract.md` for closeout language and proof discipline
+- `docs/portability.md` for the core-vs-adapter split
 - `docs/hermes-tool-mapping.md` for Hermes-native tool behavior
 - `skills/hermes-verifier-mode/` for adversarial verification
 - `skills/hermes-deep-research-loop/` for research workflows
@@ -180,7 +203,8 @@ If you want the 20/80 setup:
 2. read `docs/verification-contract.md`
 3. read `docs/hermes-tool-mapping.md`
 4. use `examples/verifier-report.md` and `examples/research-report.md` as output shapes
-5. adopt mirrored skills as modular overlays
+5. study `examples/failure-modes/` to understand the failure classes the rules are designed to prevent
+6. adopt mirrored skills as modular overlays
 
 ## Who this is for
 
@@ -211,6 +235,12 @@ Preferred status language:
 
 Do not say fixed, working, or done without proof immediately after.
 
+Minimum enforcement for contributors and adopters:
+- every substantive closeout should include explicit status labels
+- user-visible claims should name user-surface proof
+- if proof was not run, say `unverified` or `blocked`, not "done"
+- examples and templates should demonstrate the contract, not merely mention it
+
 ## Design principles
 
 - **Tool-grounded execution** — prefer evidence over plausible text
@@ -225,14 +255,17 @@ Do not say fixed, working, or done without proof immediately after.
 - `docs/philosophy.md` — why the kit exists
 - `docs/core-runtime-law.md` — smallest always-on execution contract
 - `docs/architecture.md` — how docs, templates, examples, and skills fit together
+- `docs/portability.md` — what is agent-agnostic vs what is Hermes-specific
 - `docs/verification-contract.md` — proof language and claim discipline
 - `docs/verifier-spec.md` — adversarial validation workflow
 - `docs/research-spec.md` — deep research workflow
+- `docs/releases/v0.1.1.md` — release notes for the portability + failure-mode update
 - `templates/AGENTS.template.md` — default repo-level operating law
 - `templates/minimal-AGENTS.template.md` — shorter repo-level starting point
 - `templates/paste-into-your-agent.md` — compact copy-paste block for custom instructions
 - `templates/closeout-template.md` — standard completion summary format
 - `examples/` — concrete report and closeout shapes
+- `examples/failure-modes/` — before/after examples of agent failure classes this kit is meant to prevent
 - `skills/` — public mirror of the local Hermes skill set
 - `skills/index.md` — selection guide and comparison overview
 - `ROADMAP.md` — version path from v0.1 to broader maturity

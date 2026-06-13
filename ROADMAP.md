@@ -1,16 +1,17 @@
 # Roadmap
 
 ## Vision
-Build Hermes Rules Kit into a compact, high-trust operating standard for serious Hermes agent work: coding, debugging, verification, research, and multimodal validation.
+Build Hermes Rules Kit into a compact, high-trust execution framework with a Hermes-native reference implementation for serious agent work: coding, debugging, verification, research, and multimodal validation.
 
 The goal is not to become the biggest prompt pack.
-The goal is to become the most reliable Hermes-native execution kit.
+The goal is to become a reliable operating standard whose core law is portable and whose first fully documented adapter is Hermes.
 
 ## Principles for growth
 - keep the always-on core small
 - expand only from repeated real-world failure modes
 - prefer examples and skills over policy sprawl
-- keep everything Hermes-native
+- keep the core law portable
+- keep adapters explicit and honest about runtime assumptions
 - separate proof from aspiration
 
 ## v0.1
@@ -28,21 +29,21 @@ Done / intended scope:
 - initial reusable local skills
 
 ## v0.2
-Focus: strengthen examples and validation workflows.
+Focus: strengthen examples, enforcement surfaces, and portability boundaries.
 
 Target outcomes:
-- richer verifier report examples
-- richer research report examples
+- failure-mode library with real agent mistakes and corrected behavior
+- stronger closeout-template alignment with the verification contract
 - side-effect verification playbook
 - better examples for root-cause debugging
-- contribution patterns from real failures
+- explicit portability guidance separating core law from Hermes adapter behavior
 
 ## v0.3
 Focus: modular packaging.
 
 Target outcomes:
 - publishable `skills/` mirror in repo
-- clearer separation between core, verification, research, and multimodal modules
+- clearer separation between core law, adapters, verification, research, and multimodal modules
 - migration guide for existing AGENTS users
 - starter packs for repo-level adoption
 
