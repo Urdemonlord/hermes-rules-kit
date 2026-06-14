@@ -2,7 +2,7 @@
 
 [![Release](https://img.shields.io/github/v/release/Urdemonlord/hermes-rules-kit?display_name=tag)](https://github.com/Urdemonlord/hermes-rules-kit/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![Status](https://img.shields.io/badge/status-v0.1.1-informational)](./ROADMAP.md)
+[![Status](https://img.shields.io/badge/status-v0.2.0-informational)](./ROADMAP.md)
 
 Agent execution framework with a Hermes-native reference implementation for grounded coding, verification, research, and multimodal proof.
 
@@ -57,16 +57,20 @@ hermes-rules-kit/
 │   ├── hermes-tool-mapping.md
 │   ├── verifier-spec.md
 │   ├── research-spec.md
+│   ├── swarm-mode.md
 │   ├── migration-notes.md
 │   └── releases/
-│       └── v0.1.1.md
+│       ├── v0.1.1.md
+│       └── v0.2.0.md
 ├── templates/
 │   ├── AGENTS.template.md
 │   ├── minimal-AGENTS.template.md
+│   ├── swarm-AGENTS.overlay.md
 │   ├── paste-into-your-agent.md
 │   └── closeout-template.md
 ├── examples/
 │   ├── debugging-closeout.md
+│   ├── kanban-swarm-workflow.md
 │   ├── failure-modes/
 │   │   ├── README.md
 │   │   ├── context-contamination-across-projects.md
@@ -84,7 +88,13 @@ hermes-rules-kit/
     ├── hermes-agentic-coding-20-80/
     ├── hermes-verifier-mode/
     ├── hermes-deep-research-loop/
-    └── hermes-multimodal-proof/
+    ├── hermes-multimodal-proof/
+    ├── meow-orchestrator/
+    ├── meow-researcher/
+    ├── meow-builder/
+    ├── meow-verifier/
+    ├── meow-reviewer/
+    └── meow-swarm-mode/
 ```
 
 ## Core ideas
@@ -178,14 +188,28 @@ Then adapt:
 - verification expectations
 
 ### Option C: load deeper modules only when needed
-
 After the base install, use deeper overlays selectively:
 - `docs/verification-contract.md` for closeout language and proof discipline
 - `docs/portability.md` for the core-vs-adapter split
 - `docs/hermes-tool-mapping.md` for Hermes-native tool behavior
+- `docs/swarm-mode.md` — Kanban-backed swarm operating policy and worker map
 - `skills/hermes-verifier-mode/` for adversarial verification
 - `skills/hermes-deep-research-loop/` for research workflows
 - `skills/hermes-multimodal-proof/` for screenshot and visual proof
+- `skills/meow-swarm-mode/` for durable multi-worker escalation policy
+
+### Option D: add swarm orchestration only where it earns its keep
+
+Use this when the repo regularly contains work that needs handoff, durability, or independent verification.
+
+Adopt in layers:
+1. keep the always-on core from `templates/AGENTS.template.md` or `templates/minimal-AGENTS.template.md`
+2. add `templates/swarm-AGENTS.overlay.md` only for projects that benefit from durable multi-worker execution
+3. use `docs/swarm-mode.md` as the deeper operating spec
+4. load `skills/meow-swarm-mode/` only when the task shape justifies swarm overhead
+5. use the worker pack and `examples/kanban-swarm-workflow.md` when you want durable role separation, not just abstract policy
+
+This keeps the core law compact while making swarm behavior explicit instead of magical.
 
 ### Recommended adoption path
 
@@ -258,16 +282,21 @@ Minimum enforcement for contributors and adopters:
 - `docs/portability.md` — what is agent-agnostic vs what is Hermes-specific
 - `docs/verification-contract.md` — proof language and claim discipline
 - `docs/verifier-spec.md` — adversarial validation workflow
-- `docs/research-spec.md` — deep research workflow
+- `docs/swarm-mode.md` — durable swarm execution policy and worker responsibilities
+- `docs/research-spec.md` — multi-step investigation workflow
 - `docs/releases/v0.1.1.md` — release notes for the portability + failure-mode update
 - `templates/AGENTS.template.md` — default repo-level operating law
 - `templates/minimal-AGENTS.template.md` — shorter repo-level starting point
+- `templates/swarm-AGENTS.overlay.md` — optional swarm escalation overlay for durable multi-worker repos
 - `templates/paste-into-your-agent.md` — compact copy-paste block for custom instructions
 - `templates/closeout-template.md` — standard completion summary format
 - `examples/` — concrete report and closeout shapes
+- `examples/kanban-swarm-workflow.md` — worked example of a Kanban-backed Meow swarm task graph
 - `examples/failure-modes/` — before/after examples of agent failure classes this kit is meant to prevent
 - `skills/` — public mirror of the local Hermes skill set
 - `skills/index.md` — selection guide and comparison overview
+- `docs/releases/v0.2.0.md` — release notes for swarm mode, worker pack, and Kanban example
+- `skills/meow-swarm-mode/` — optional skill for Kanban-backed swarm escalation policy
 - `ROADMAP.md` — version path from v0.1 to broader maturity
 
 ## Philosophy

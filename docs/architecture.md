@@ -67,8 +67,10 @@ Primary files:
 - `docs/hermes-tool-mapping.md`
 - `docs/verifier-spec.md`
 - `docs/research-spec.md`
+- `docs/swarm-mode.md`
 - `docs/migration-notes.md`
 - `docs/releases/v0.1.1.md`
+- `docs/releases/v0.2.0.md`
 
 This layer explains the system.
 
@@ -78,6 +80,7 @@ Roles:
 - `hermes-tool-mapping.md` maps abstract discipline to Hermes-native tools
 - `verifier-spec.md` defines adversarial validation workflow
 - `research-spec.md` defines multi-step investigation workflow
+- `swarm-mode.md` defines when durable multi-worker orchestration is worth the overhead and how worker roles are separated
 - `migration-notes.md` explains adaptation from other rule ecosystems without inheriting IDE-specific assumptions
 - `docs/releases/*.md` captures release-level deltas and packaging changes
 
@@ -91,7 +94,9 @@ Primary files:
 - `templates/minimal-AGENTS.template.md`
 - `templates/paste-into-your-agent.md`
 - `templates/closeout-template.md`
+- `templates/swarm-AGENTS.overlay.md`
 - `examples/debugging-closeout.md`
+- `examples/kanban-swarm-workflow.md`
 - `examples/verification-closeout.md`
 - `examples/verifier-report.md`
 - `examples/research-report.md`
@@ -124,6 +129,12 @@ Primary files:
 - `skills/hermes-verifier-mode/SKILL.md`
 - `skills/hermes-deep-research-loop/SKILL.md`
 - `skills/hermes-multimodal-proof/SKILL.md`
+- `skills/meow-orchestrator/SKILL.md`
+- `skills/meow-researcher/SKILL.md`
+- `skills/meow-builder/SKILL.md`
+- `skills/meow-verifier/SKILL.md`
+- `skills/meow-reviewer/SKILL.md`
+- `skills/meow-swarm-mode/SKILL.md`
 
 This layer is the modular runtime packaging.
 
@@ -156,8 +167,18 @@ The verification contract defines the language.
 Verifier docs and report examples show how that language is applied in real closeouts.
 
 ### Research spec -> research example
-The research spec defines the loop.
+`research-spec.md` defines the loop.
 The research example shows the final report shape.
+
+### Swarm spec -> swarm overlay + skill
+`swarm-mode.md` defines the durable orchestration policy.
+`templates/swarm-AGENTS.overlay.md` makes it repo-available without bloating the always-on core.
+`skills/meow-swarm-mode/` packages the same policy as a loadable runtime module.
+
+### Swarm policy -> worker pack + Kanban example
+`meow-swarm-mode` defines when swarm is appropriate.
+The worker-role skills package the default ownership lanes.
+`examples/kanban-swarm-workflow.md` shows the durable board shape that ties those roles together.
 
 ### Docs/specs -> skills
 Docs describe the operating model.

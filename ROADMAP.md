@@ -29,21 +29,22 @@ Done / intended scope:
 - initial reusable local skills
 
 ## v0.2
-Focus: strengthen examples, enforcement surfaces, and portability boundaries.
+Focus: strengthen examples, enforcement surfaces, and multi-worker operating policy.
 
-Target outcomes:
+Delivered / active scope:
 - failure-mode library with real agent mistakes and corrected behavior
 - stronger closeout-template alignment with the verification contract
-- side-effect verification playbook
-- better examples for root-cause debugging
 - explicit portability guidance separating core law from Hermes adapter behavior
+- Meow swarm-mode spec defining direct vs strike team vs durable swarm usage
+- Kanban-backed swarm overlay for repo-local adoption
+- first-pass worker skill pack and worked Kanban workflow example
 
 ## v0.3
 Focus: modular packaging.
 
 Target outcomes:
-- publishable `skills/` mirror in repo
-- clearer separation between core law, adapters, verification, research, and multimodal modules
+- publishable `skills/` mirror in repo with clearer role-based packaging
+- clearer separation between core law, adapters, verification, research, multimodal, and swarm-worker modules
 - migration guide for existing AGENTS users
 - starter packs for repo-level adoption
 
