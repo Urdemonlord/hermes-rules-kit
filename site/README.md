@@ -17,6 +17,16 @@ Until both are filled, the buttons scroll to the note instead of pretending to s
 
 Payment links work fine from Xendit, Lemon Squeezy, or a GoBiz QRIS page. Nothing in the page depends on which one you pick.
 
+## Live
+
+https://rules-kit.vercel.app (project `rules-kit`, scope `azazels-projects`)
+
+Redeploy after editing:
+
+```bash
+cd site && vercel deploy --prod --scope azazels-projects
+```
+
 ## Serve it locally
 
 ```bash
