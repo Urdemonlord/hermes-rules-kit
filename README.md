@@ -1,8 +1,11 @@
 # Hermes Rules Kit
 
 [![Release](https://img.shields.io/github/v/release/Urdemonlord/hermes-rules-kit?display_name=tag)](https://github.com/Urdemonlord/hermes-rules-kit/releases)
+[![check](https://github.com/Urdemonlord/hermes-rules-kit/actions/workflows/check.yml/badge.svg)](https://github.com/Urdemonlord/hermes-rules-kit/actions/workflows/check.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 [![Status](https://img.shields.io/badge/status-v0.2.1-informational)](./ROADMAP.md)
+
+Tested against Hermes Agent v0.22.1+. Tool names are Hermes-native; other runtimes map them via `docs/portability.md`.
 
 Agent execution framework with a Hermes-native reference implementation for grounded coding, verification, research, and multimodal proof.
 
@@ -303,6 +306,8 @@ Minimum enforcement for contributors and adopters:
 - `STARTER.md` — presets by kind of work, with the install command
 - `presets/*.list` — one text file per preset; add your own
 - `docs/adoption.md` — the four adoption layers, update path, and pitfalls
+- `docs/requirements.md` — tool prerequisites per preset, and the Hermes version this was tested against
+- `.github/workflows/check.yml` — runs the self-check and installs every preset on push
 - `scripts/install-skills.sh` — copy a preset into a skills directory, skip what exists, write a manifest
 - `scripts/check.sh` — repo self-check: frontmatter names, closeout labels, links, version claims, secret/PII scan
 - `docs/releases/v0.2.0.md` — release notes for swarm mode, worker pack, and Kanban example

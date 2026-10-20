@@ -33,6 +33,8 @@ Skills are the procedures: what actually worked on a real deploy, a real migrati
 
 Do not install all 104. Install a preset, run real work for a week, then add individual skills when you hit the problem they solve.
 
+Tool prerequisites per preset: `docs/requirements.md`. A skill that names `docker` or `adb` will fail at the step that needs it, not at install time.
+
 Presets are plain lists in `presets/`. Adding your own is a text file, not a plugin.
 
 ### If you are on Claude Code, Cursor, or Codex

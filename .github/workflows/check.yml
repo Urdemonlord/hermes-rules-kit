@@ -1,0 +1,41 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  repo-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Repo self-check
+        run: bash scripts/check.sh
+
+  preset-install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Every preset installs, is idempotent, and records a manifest
+        run: |
+          set -euo pipefail
+          dest="$RUNNER_TEMP/skills"
+          for f in presets/*.list; do
+            preset=$(basename "$f" .list)
+            want=$(grep -vcE '^\s*(#|$)' "$f")
+            rm -rf "$dest"
+
+            ./scripts/install-skills.sh "$preset" --dest "$dest" --dry-run | grep -c "would be copied" > /dev/null
+            ./scripts/install-skills.sh "$preset" --dest "$dest" > /dev/null
+
+            got=$(find "$dest" -maxdepth 2 -name SKILL.md | wc -l)
+            [ "$got" -eq "$want" ] || { echo "$preset: installed $got of $want"; exit 1; }
+
+            manifest="$dest/.installed-$preset"
+            [ "$(wc -l < "$manifest")" -eq "$want" ] || { echo "$preset: manifest incomplete"; exit 1; }
+
+            ./scripts/install-skills.sh "$preset" --dest "$dest" | grep -c "0 copied" > /dev/null
+            echo "$preset: $got skills, idempotent, manifest ok"
+          done
