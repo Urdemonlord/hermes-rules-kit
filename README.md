@@ -143,6 +143,8 @@ Do not carry assumptions, conventions, or deployment habits from project A into 
 
 ## Quick start
 
+New here? `STARTER.md` picks the preset that matches your work; `docs/adoption.md` explains the four layers and when to stop.
+
 Use Hermes Rules Kit in two ways:
 - **Paste mode** — copy a compact rules block into your AI agent's system prompt, custom instructions, or agent file
 - **Repo mode** — install a project-local `AGENTS.md` so the rules live with the codebase
@@ -298,6 +300,10 @@ Minimum enforcement for contributors and adopters:
 - `skills/INDEX.md` — every skill by area, with its one-line trigger
 - `skills/meow-swarm-mode/` — optional skill for Kanban-backed swarm escalation policy
 - `config/hermes-settings.md` — sanitized runtime settings that change execution behavior
+- `STARTER.md` — presets by kind of work, with the install command
+- `presets/*.list` — one text file per preset; add your own
+- `docs/adoption.md` — the four adoption layers, update path, and pitfalls
+- `scripts/install-skills.sh` — copy a preset into a skills directory, skip what exists, write a manifest
 - `scripts/check.sh` — repo self-check: frontmatter names, closeout labels, links, version claims, secret/PII scan
 - `docs/releases/v0.2.0.md` — release notes for swarm mode, worker pack, and Kanban example
 - `ROADMAP.md` — version path from v0.1 to broader maturity

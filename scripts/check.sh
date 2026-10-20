@@ -64,5 +64,13 @@ scan '(?i)\b(TOKEN|API_KEY|SECRET|PASSWORD)\s*=\s*[^\s`<"\x27]+' "inline credent
 scan '([0-9]{1,3}\.){3}[0-9]{1,3}' "IP literal" \
   '127\.0\.0\.1|0\.0\.0\.0|1\.1\.1\.1|8\.8\.8\.8|169\.254\.|203\.0\.113\.|(^|[^0-9])10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[01])\.'
 
+# 8. presets only reference skills that exist in this repo
+for f in presets/*.list; do
+  while IFS= read -r n; do
+    case "$n" in ""|\#*) continue;; esac
+    [ -d "skills/$n" ] || err "$f references missing skill '$n'"
+  done < "$f"
+done
+
 [ $fail -eq 0 ] && echo "OK: checks passed"
 exit $fail
