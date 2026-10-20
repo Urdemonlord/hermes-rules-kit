@@ -1,0 +1,16 @@
+[Unit]
+Description=Express App Service — %i
+After=network.target
+
+[Service]
+Type=simple
+User=meowlabs
+WorkingDirectory=/home/user/PROJECT_DIR
+ExecStart=/home/user/.local/bin/node server.js
+Restart=always
+RestartSec=5
+# Load .env at runtime
+EnvironmentFile=/home/user/PROJECT_DIR/.env
+
+[Install]
+WantedBy=multi-user.target

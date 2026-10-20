@@ -1,0 +1,31 @@
+{
+  "mission_id": "<mission-id>",
+  "objective": "<one-sentence objective>",
+  "mode": "<LOW|MEDIUM|HIGH|EXTRA HIGH>",
+  "model_routing": {
+    "primary": "gpt-5.3-codex",
+    "fast_lane": "gpt-5.4-mini",
+    "fallback": "gpt-5.2",
+    "forbidden": ["gpt-5.4-high"]
+  },
+  "items": [
+    {
+      "id": "T1",
+      "category": "backend",
+      "content": "<task description>",
+      "status": "pending",
+      "acceptance_criteria": ["<ac1>", "<ac2>"],
+      "review": {
+        "status": "pending",
+        "issues": []
+      },
+      "verified": false,
+      "evidence": []
+    }
+  ],
+  "retry_policy": {
+    "max_stage_retries": 2,
+    "infra_retry_once_before_fallback": true
+  },
+  "updated_at": "<iso8601>"
+}

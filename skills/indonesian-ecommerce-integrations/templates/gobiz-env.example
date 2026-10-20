@@ -1,0 +1,10 @@
+# GoPay Merchant (GoBiz) — Credentials
+# Isi dengan akun GoBiz merchant kamu
+
+GOPAY_EMAIL=user@example.com
+GOPAY_PASSWORD=password_merchant
+
+# QRIS statis dari dashboard GoBiz (Settings > QRIS)
+# Format: string EMVCo dimulai 000201...
+# Panjang ~240-260 karakter
+QRIS_STRING=0002010102112657...

@@ -2,7 +2,7 @@
 
 [![Release](https://img.shields.io/github/v/release/Urdemonlord/hermes-rules-kit?display_name=tag)](https://github.com/Urdemonlord/hermes-rules-kit/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![Status](https://img.shields.io/badge/status-v0.2.0-informational)](./ROADMAP.md)
+[![Status](https://img.shields.io/badge/status-v0.2.1-informational)](./ROADMAP.md)
 
 Agent execution framework with a Hermes-native reference implementation for grounded coding, verification, research, and multimodal proof.
 
@@ -290,13 +290,16 @@ Minimum enforcement for contributors and adopters:
 - `templates/swarm-AGENTS.overlay.md` — optional swarm escalation overlay for durable multi-worker repos
 - `templates/paste-into-your-agent.md` — compact copy-paste block for custom instructions
 - `templates/closeout-template.md` — standard completion summary format
+- `templates/AGENTS.operator.template.md` — operator-level law: identity block plus engineering discipline, placeholder-driven
 - `examples/` — concrete report and closeout shapes
-- `examples/kanban-swarm-workflow.md` — worked example of a Kanban-backed Meow swarm task graph
+- `examples/kanban-swarm-workflow.md` — worked example of a Kanban-backed swarm task graph
 - `examples/failure-modes/` — before/after examples of agent failure classes this kit is meant to prevent
-- `skills/` — curated public edition of the local Hermes skill set (portable rules only)
-- `skills/index.md` — selection guide and comparison overview
-- `docs/releases/v0.2.0.md` — release notes for swarm mode, worker pack, and Kanban example
+- `skills/` — 104 skills: 10 framework, 94 library
+- `skills/INDEX.md` — every skill by area, with its one-line trigger
 - `skills/meow-swarm-mode/` — optional skill for Kanban-backed swarm escalation policy
+- `config/hermes-settings.md` — sanitized runtime settings that change execution behavior
+- `scripts/check.sh` — repo self-check: frontmatter names, closeout labels, links, version claims, secret/PII scan
+- `docs/releases/v0.2.0.md` — release notes for swarm mode, worker pack, and Kanban example
 - `ROADMAP.md` — version path from v0.1 to broader maturity
 
 ## Philosophy
@@ -315,6 +318,7 @@ That means:
 ## Release
 
 Current public release:
+- `v0.2.1` — skill library (104 skills), operator template, runtime settings, repo self-check
 - `v0.2.0` — swarm mode, worker skill pack, Kanban workflow example
 - `v0.1.1` — portability framing, verification contract tightening, and failure-mode library
 

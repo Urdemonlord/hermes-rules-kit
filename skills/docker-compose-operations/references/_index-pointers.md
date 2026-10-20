@@ -1,0 +1,4 @@
+- `references/sqlite-docker-data-modification.md` — Safe SQLite data modification from Docker container pattern.
+- `references/sveltekit-csrf-playwright-testing.md` — CSRF + Playwright for local SvelteKit testing
+- `references/cloudflare-404-cache-poison.md` — CF caches 404 before assets exist; version-bust URLs or purge
+- `references/midtrans-no-payment-channels.md` — Midtrans prod shows "no payment channels" despite working API integration

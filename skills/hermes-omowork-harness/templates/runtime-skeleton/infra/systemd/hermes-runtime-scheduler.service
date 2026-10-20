@@ -1,0 +1,14 @@
+[Unit]
+Description=Hermes Runtime Scheduler (Bun)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/hermes-runtime
+EnvironmentFile=%h/hermes-runtime/.env
+ExecStart=/usr/bin/env bun run dev:scheduler
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,21 @@
+{
+  "version": "1.0",
+  "task_classes": ["build-app", "bugfix", "refactor", "research", "ops"],
+  "profiles": {
+    "build-app": {"mode": "AUTONOMOUS", "intelligence": "HIGH", "max_workers": 3},
+    "bugfix": {"mode": "AUTONOMOUS", "intelligence": "MEDIUM", "max_workers": 2},
+    "refactor": {"mode": "AUTONOMOUS", "intelligence": "HIGH", "max_workers": 3},
+    "research": {"mode": "RESEARCH", "intelligence": "HIGH", "max_workers": 2},
+    "ops": {"mode": "AUTONOMOUS", "intelligence": "HIGH", "max_workers": 2}
+  },
+  "critical_clarification": [
+    "target_repo_or_project",
+    "new_vs_existing_project",
+    "deploy_target_if_deploy_requested",
+    "destructive_production_action_confirmation"
+  ],
+  "forbidden_behavior": [
+    "multi-question-form-at-start",
+    "blocking-on-noncritical-ambiguity"
+  ]
+}
