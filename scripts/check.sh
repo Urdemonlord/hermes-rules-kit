@@ -52,7 +52,7 @@ done
 # 7. no credentials, personal data, or local paths in published text
 scan() { # $1 = regex, $2 = description, $3 = extra exclusions
   local out extra="${3-}"
-  out=$(grep -rInP "$1" --include='*.md' --include='*.sh' --include='*.yaml' --include='*.json' . 2>/dev/null \
+  out=$(grep -rInP "$1" --include='*.md' --include='*.sh' --include='*.yaml' --include='*.json' --include='*.html' . 2>/dev/null \
     | grep -v '^\./scripts/check\.sh' | grep -v '/\.git/' | grep -v '^\./\.ops-boundary\.md')
   [ -z "$extra" ] || out=$(printf '%s\n' "$out" | grep -vE "$extra")
   [ -z "$out" ] || { echo "$out" | head -5; err "found $2"; }

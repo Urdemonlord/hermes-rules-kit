@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rules Kit: proof discipline for coding agents</title>
+<meta name="description" content="A Hermes setup that makes an agent name its proof before saying done. 104 skills, five presets, a check script that fails on unproven claims. MIT.">
+<!--
+  Checkout links are not configured yet. Create the two payment links, then fill
+  CHECKOUT below. Until both fields are set, the buttons point to the contact line.
+-->
+<style>
+  :root{
+    --ink:#0c0d0c;
+    --paper:#f4f1ea;
+    --dim:#a9a49a;
+    --line:#2a2c28;
+    --accent:#e8542f;
+    --good:#9fd35a;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--ink);color:var(--paper);
+    font-family:var(--sans);font-size:17px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+  header{border-bottom:1px solid var(--line)}
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0}
+  .brand{font-family:var(--mono);font-size:14px;letter-spacing:.14em;text-transform:uppercase}
+  .brand span{color:var(--accent)}
+  nav{display:flex;gap:22px;font-family:var(--mono);font-size:13px;color:var(--dim)}
+  nav a{text-decoration:none}
+  nav a:hover{color:var(--paper)}
+  .hero{padding:84px 0 56px;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:start}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0 0 22px}
+  h1{font-size:clamp(38px,5.4vw,68px);line-height:.98;letter-spacing:-.03em;margin:0 0 24px;font-weight:650}
+  h1 em{font-style:normal;color:var(--accent)}
+  .lede{font-size:19px;color:#cfcabf;max-width:52ch;margin:0 0 32px}
+  .cta{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{display:inline-block;padding:14px 22px;border:1px solid var(--paper);text-decoration:none;font-family:var(--mono);font-size:14px;letter-spacing:.02em}
+  .btn.solid{background:var(--paper);color:var(--ink)}
+  .btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.solid:hover{background:var(--accent);color:#fff}
+  .note{font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:18px}
+  .term{border:1px solid var(--line);background:#111312;padding:0;font-family:var(--mono);font-size:13px;line-height:1.7}
+  .term .head{display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line);color:var(--dim);font-size:11px}
+  .term .head b{width:8px;height:8px;border-radius:50%;background:#3a3d38;display:inline-block}
+  .term pre{margin:0;padding:16px 18px;white-space:pre-wrap;color:#ddd8cd}
+  .bad{color:#e07a63}
+  .ok{color:var(--good)}
+  section{border-top:1px solid var(--line);padding:72px 0}
+  h2{font-size:clamp(26px,3vw,36px);letter-spacing:-.02em;margin:0 0 18px;font-weight:620}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+  p{margin:0 0 16px;color:#cfcabf}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:28px 0 8px}
+  .stat{background:var(--ink);padding:22px 18px}
+  .stat b{display:block;font-size:34px;letter-spacing:-.02em;font-weight:640}
+  .stat span{font-family:var(--mono);font-size:12px;color:var(--dim)}
+  ul.plain{list-style:none;padding:0;margin:0}
+  ul.plain li{padding:12px 0;border-bottom:1px solid var(--line);color:#cfcabf}
+  ul.plain li:before{content:"·";color:var(--accent);margin-right:12px}
+  .steps{counter-reset:s;list-style:none;padding:0;margin:0}
+  .steps li{counter-increment:s;padding:18px 0;border-bottom:1px solid var(--line)}
+  .steps li:before{content:"0" counter(s);font-family:var(--mono);color:var(--accent);margin-right:16px;font-size:13px}
+  code{font-family:var(--mono);font-size:.92em;background:#171a17;padding:2px 6px;border:1px solid var(--line)}
+  .price{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .card{border:1px solid var(--line);padding:30px;display:flex;flex-direction:column;gap:14px}
+  .card.hot{border-color:var(--paper)}
+  .card h3{margin:0;font-size:22px;letter-spacing:-.01em}
+  .amount{font-family:var(--mono);font-size:38px;letter-spacing:-.03em}
+  .amount small{font-size:13px;color:var(--dim);letter-spacing:0}
+  .card .btn{text-align:center;margin-top:auto}
+  .fine{font-family:var(--mono);font-size:12px;color:var(--dim)}
+  details{border-bottom:1px solid var(--line);padding:16px 0}
+  summary{cursor:pointer;font-weight:560}
+  details p{margin:12px 0 0;color:var(--dim)}
+  footer{border-top:1px solid var(--line);padding:36px 0 64px;font-family:var(--mono);font-size:12px;color:var(--dim)}
+  footer a{text-decoration:none;border-bottom:1px solid var(--line)}
+  @media (max-width:820px){
+    .hero,.two,.price{grid-template-columns:1fr;gap:36px}
+    .hero{padding:56px 0 40px}
+    .stats{grid-template-columns:1fr 1fr}
+    nav{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <div class="brand">rules<span>.</span>kit</div>
+    <nav>
+      <a href="#problem">Problem</a>
+      <a href="#inside">Inside</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#limits">Limits</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow">MIT · 104 skills · tested on Hermes v0.22.1</p>
+      <h1>Your agent says done.<br>Make it <em>prove</em> it.</h1>
+      <p class="lede">A setup for Hermes that turns completion claims into evidence: named proof, explicit status labels, and a check script that fails when the claim outruns the test.</p>
+      <div class="cta">
+        <a class="btn solid" href="#pricing" data-checkout="pack">Get the Ops Pack · $39</a>
+        <a class="btn" href="#pricing" data-checkout="session">Book a setup · $249</a>
+      </div>
+      <p class="note">One-time. MIT. The repo stays free on GitHub; the pack is the selected subset, configured.</p>
+    </div>
+    <div class="term" aria-label="Example closeout">
+      <div class="head"><b></b><b></b><b></b><span style="margin-left:8px">agent closeout</span></div>
+<pre><span class="bad">Before
+  "Fixed. Updated the retry guard."</span>
+
+<span class="ok">After
+  changed:       retry guard, worker.py
+  verified:      pytest -k retry_guard ·
+                 was FAIL, now PASS
+  unverified:    production path not run
+  blocked:       none
+  assumption:    retry budget unchanged</span></pre>
+    </div>
+  </div>
+
+  <section id="problem">
+    <div class="wrap two">
+      <div>
+        <p class="kicker">The failure</p>
+        <h2>Three ways an agent lies without lying</h2>
+        <p>It edits the file, runs nothing, and reports success. It patches the symptom because it never located the invariant. It accepts a subagent's summary as proof that a deploy happened.</p>
+        <p>None of these are model intelligence problems. They are proof problems: the agent was allowed to end its turn without naming evidence.</p>
+        <p>Rules help. Rules that fail a build when the evidence is missing work better.</p>
+      </div>
+      <div class="term" aria-label="Check script output">
+        <div class="head"><b></b><b></b><b></b><span style="margin-left:8px">scripts/check.sh</span></div>
+<pre>$ ./scripts/check.sh
+FAIL: skills/plan/SKILL.md declares
+      name '', dir is 'plan'
+FAIL: examples/debugging-closeout.md
+      missing closeout label 'blocked'
+FAIL: found email address
+exit=1
+
+$ ./scripts/check.sh
+OK: checks passed</pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="inside">
+    <div class="wrap">
+      <p class="kicker">What is in it</p>
+      <h2>A library, not a prompt pack</h2>
+      <div class="stats">
+        <div class="stat"><b>104</b><span>skills</span></div>
+        <div class="stat"><b>10</b><span>framework</span></div>
+        <div class="stat"><b>94</b><span>library</span></div>
+        <div class="stat"><b>5</b><span>presets</span></div>
+      </div>
+      <ul class="plain">
+        <li>Framework skills: proof discipline, adversarial verification, research loop, visual proof.</li>
+        <li>Library skills: Docker Compose operations, VPS recovery, SvelteKit runtime traps, Android builds without an IDE, classifier evaluation, security assessment.</li>
+        <li>Presets so you install 8 to 10 skills by kind of work, instead of 104 by hope.</li>
+        <li>A check script that fails on broken links, skipped status labels, mismatched skill names, leaked credentials and PII.</li>
+        <li>CI that runs the check and installs every preset on each push.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap two">
+      <div>
+        <p class="kicker">Install</p>
+        <h2>Four layers, stop where it is enough</h2>
+        <ol class="steps">
+          <li>Paste the rules block into your agent. Five minutes, no install.</li>
+          <li>Drop an <code>AGENTS.md</code> into the repo so the rules travel with the code.</li>
+          <li>Install a preset with one command. Ten skills, not a hundred.</li>
+          <li>Adopt the runtime settings and operator template once the basics hold.</li>
+        </ol>
+      </div>
+      <div>
+        <div class="term">
+          <div class="head"><b></b><b></b><b></b><span style="margin-left:8px">install</span></div>
+<pre>git clone https://github.com/Urdemonlord/hermes-rules-kit
+cd hermes-rules-kit
+
+./scripts/install-skills.sh default --dry-run
+./scripts/install-skills.sh default
+
+# second run copies nothing, by design</pre>
+        </div>
+        <p class="note">Works on any agent that reads SKILL.md. Claude Code and Cursor need tool names mapped first; that is documented, not hidden.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <p class="kicker">Pricing</p>
+      <h2>Two ways to get it working</h2>
+      <div class="price">
+        <div class="card">
+          <h3>Ops Pack</h3>
+          <div class="amount">$39 <small>one-time</small></div>
+          <p>Presets, runtime settings, operator template, install script, and updates for 12 months.</p>
+          <p class="fine">Self-serve. You run the commands. Support by email.</p>
+          <a class="btn solid" href="#" data-checkout="pack">Buy the pack</a>
+        </div>
+        <div class="card hot">
+          <h3>Setup session</h3>
+          <div class="amount">$249 <small>45 minutes</small></div>
+          <p>Your repo, your stack. We install the preset, wire the check script, and run one real task end to end with the proof visible.</p>
+          <p class="fine">Screen shared. Recording yours to keep. One follow-up question thread for 14 days.</p>
+          <a class="btn" href="#" data-checkout="session">Book a session</a>
+        </div>
+      </div>
+      <p class="note" id="checkout-note">Checkout links are being wired. Until then, open an issue on the repo and say which one you want.</p>
+    </div>
+  </section>
+
+  <section id="limits">
+    <div class="wrap two">
+      <div>
+        <p class="kicker">Limits</p>
+        <h2>What this does not do</h2>
+        <p>No benchmark claims. There is no study showing this cuts your failure rate by a fixed percentage, and I am not going to invent one.</p>
+        <p>It does not make an agent correct. It makes an unproven claim visible, which is a smaller promise and the one that holds.</p>
+      </div>
+      <div>
+        <details>
+          <summary>Isn't this free on GitHub?</summary>
+          <p>Yes. MIT, public, and it stays that way. The pack is the selected subset, the configuration for a stack, and updates when the skill set changes. If you would rather clone it and wire it yourself, do that.</p>
+        </details>
+        <details>
+          <summary>Do I need Hermes?</summary>
+          <p>The rules are agent-agnostic. The skills name Hermes tools, so Claude Code and Cursor users map the tool names first. The mapping is in the repo.</p>
+        </details>
+        <details>
+          <summary>How old is this?</summary>
+          <p>Four months of real work from one operator, not a course. Small, opinionated, and edited when something breaks.</p>
+        </details>
+        <details>
+          <summary>What if it does not fit my stack?</summary>
+          <p>Say so in the first session and you get the money back. The preset list is public: read it before buying.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="https://github.com/Urdemonlord/hermes-rules-kit">github.com/Urdemonlord/hermes-rules-kit</a> · MIT · built from real work, not a template.</p>
+  </div>
+</footer>
+
+<script>
+  // Fill these with your payment links. Empty means the button scrolls to the note.
+  const CHECKOUT = {
+    pack: "",
+    session: ""
+  };
+  const note = document.getElementById("checkout-note");
+  document.querySelectorAll("[data-checkout]").forEach(function (el) {
+    const key = el.getAttribute("data-checkout");
+    if (CHECKOUT[key]) {
+      el.href = CHECKOUT[key];
+      el.rel = "noopener";
+    } else {
+      el.addEventListener("click", function () {
+        note.scrollIntoView({ behavior: "smooth", block: "center" });
+        note.style.color = "#e8542f";
+      });
+    }
+  });
+  if (CHECKOUT.pack || CHECKOUT.session) {
+    note.textContent = "Secure checkout. Receipt and files arrive by email.";
+  }
+</script>
+</body>
+</html>

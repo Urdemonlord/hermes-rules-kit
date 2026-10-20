@@ -309,6 +309,7 @@ Minimum enforcement for contributors and adopters:
 - `docs/requirements.md` — tool prerequisites per preset, and the Hermes version this was tested against
 - `.github/workflows/check.yml` — runs the self-check and installs every preset on push
 - `scripts/install-skills.sh` — copy a preset into a skills directory, skip what exists, write a manifest
+- `site/index.html` — the sales page: static, one file, checkout links filled in at the bottom
 - `scripts/check.sh` — repo self-check: frontmatter names, closeout labels, links, version claims, secret/PII scan
 - `docs/releases/v0.2.0.md` — release notes for swarm mode, worker pack, and Kanban example
 - `ROADMAP.md` — version path from v0.1 to broader maturity
