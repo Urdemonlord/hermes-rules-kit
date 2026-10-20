@@ -43,7 +43,7 @@ Delivered / active scope:
 Focus: modular packaging.
 
 Target outcomes:
-- publishable `skills/` mirror in repo with clearer role-based packaging
+- publishable `skills/` edition in repo with clearer role-based packaging
 - clearer separation between core law, adapters, verification, research, multimodal, and swarm-worker modules
 - migration guide for existing AGENTS users
 - starter packs for repo-level adoption
@@ -68,7 +68,7 @@ Target outcomes:
 - strong differentiation as a Hermes-native execution framework
 
 ## Open questions
-- should repo-local `skills/` be source-of-truth or just a public mirror?
+- should repo-local `skills/` be source-of-truth or just a public edition? (answered: public edition; runtime copy is authoritative, see `skills/README.md`)
 - how much of the strict runtime law should stay in templates vs docs?
 - should verifier mode remain a skill only, or also have a public doc spec?
 - should future automation include scripts or stay documentation-first?

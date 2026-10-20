@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This index explains what each mirrored skill is for, when to use it, and how they differ.
+This index explains what each skill in this directory is for, when to use it, and how they differ.
 
 ## Skill overview
 

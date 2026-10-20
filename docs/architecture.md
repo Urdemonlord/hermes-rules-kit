@@ -14,7 +14,7 @@ The repository has five main layers:
 2. runtime adapters
 3. docs/specs
 4. templates/examples
-5. skills mirror
+5. skills edition
 
 These layers are complementary, not redundant.
 
@@ -120,7 +120,7 @@ Use examples when:
 - a contributor needs to understand expected tone and structure
 - a workflow is easier to learn from output than from abstract rules
 
-## 5. Skills mirror
+## 5. Skills edition
 
 Primary files:
 - `skills/README.md`
@@ -139,14 +139,17 @@ Primary files:
 This layer is the modular runtime packaging.
 
 The docs explain the ideas.
-The mirrored skills package those ideas into units that can be loaded selectively.
+The packaged skills turn those ideas into units that can be loaded selectively.
 
-### Why mirror skills in the repo
+### Why keep skills in the repo
 Local Hermes runtime may load from `~/.hermes/skills/`, but the public repo needs:
 - versioned skill source
 - visible modular structure
 - easier collaboration and review
 - a basis for future packaging or syncing
+
+The runtime copy stays authoritative for behavior; this repo ships a curated public edition of the portable rules.
+See `skills/README.md` for the direction-of-truth rule.
 
 ## Relationship map
 
@@ -223,6 +226,13 @@ Avoid:
 - placing repo-specific business context into reusable skills
 - making skills diverge silently from the docs
 - adding complexity before repeated usage justifies it
+
+### Allowed duplication, and how it is controlled
+
+Some copies are deliberate: `templates/*` are copied into other repos, and a skill must be self-contained to be installable.
+Those files carry a header naming `docs/core-runtime-law.md` as canonical, and the closeout shape has a single definition in `docs/verification-contract.md`.
+Duplication becomes a defect only when it drifts.
+`scripts/check.sh` fails the build when the artifacts and the contract disagree, so drift is caught instead of trusted to review.
 
 ## Practical reading order
 

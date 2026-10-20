@@ -1,5 +1,9 @@
 # Hermes Agentic Coding Template
 
+> Derived from `docs/core-runtime-law.md`.
+> Self-contained by design, because this file gets copied into target repos.
+> If this copy and the core law disagree, the core law wins.
+
 ## Core posture
 - Act with tools when tools can ground the answer.
 - Read before edit.

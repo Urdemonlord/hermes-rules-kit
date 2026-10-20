@@ -1,33 +1,39 @@
-# Skills Mirror
+# Skills In This Repo
 
-This directory is a public mirror of the core local Hermes skills used by Hermes Rules Kit.
+This directory is a **curated public edition** of the Meow Labs Hermes skill set.
+It is not a byte-for-byte mirror.
 
-## Purpose
+## Direction of truth
 
-The repo docs and templates are runtime-agnostic documentation artifacts.
-The files here are the matching skill artifacts in a publishable layout so the public repo can show the modular structure clearly.
+- `~/.hermes/skills/` — private runtime copy. Source of truth for live behavior. Carries project-specific `references/` files.
+- This repo — publication copy. Portable rule text only: no internal project references, no client or infrastructure specifics.
+- A skill here may lag the runtime copy. That is expected.
+- To publish a lesson from the runtime copy, port the rule text and leave the reference files behind. Never link to a file this repo does not ship.
 
-## Included skills
+## Portable skills
+
+Usable outside Hermes once tool names are swapped:
+
 - `hermes-agentic-coding-20-80`
 - `hermes-verifier-mode`
 - `hermes-deep-research-loop`
 - `hermes-multimodal-proof`
+
+## Meow-internal skills
+
+Tied to Hermes Kanban and `delegate_task` coordination. Reference implementation, not portable installs:
+
+- `meow-swarm-mode`
 - `meow-orchestrator`
 - `meow-researcher`
 - `meow-builder`
 - `meow-verifier`
 - `meow-reviewer`
-- `meow-swarm-mode`
 
-## Notes
-- Local Hermes runtime may load skills from `~/.hermes/skills/`.
-- This repo directory is a public mirror for versioning, sharing, and future packaging.
-- If the local skill and repo mirror ever diverge, the repo copy should be updated explicitly from the latest validated version.
+These role skills do not exist in the private runtime copy under these names.
+Treat them as a design sketch for durable worker lanes.
 
-## Packaging note
+## Check before publishing
 
-`meow-swarm-mode` is intentionally an optional module.
-The repo's always-on core should stay compact; swarm orchestration belongs in an overlay or loadable skill unless the target project truly benefits from durable multi-worker execution.
-
-The worker-role skills are also intentionally modular.
-They are meant to provide clean ownership lanes for Kanban-backed work, not to imply that every repo should always run all worker roles.
+Run `scripts/check.sh` from the repo root.
+It checks frontmatter names, closeout label coverage, relative links, version consistency, and dangling `references/` links.

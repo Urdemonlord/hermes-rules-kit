@@ -1,5 +1,8 @@
 # Paste Into Your AI Agent
 
+Derived from `docs/core-runtime-law.md`.
+If this block and the core law disagree, the core law wins.
+
 Use this block in a system prompt, custom instructions field, or agent file.
 
 ```md

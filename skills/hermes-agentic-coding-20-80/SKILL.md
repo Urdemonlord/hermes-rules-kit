@@ -12,6 +12,10 @@ metadata:
 
 # Hermes Agentic Coding 20/80
 
+Derived from `docs/core-runtime-law.md`.
+Self-contained by design, because this file is installed as a standalone skill.
+If this copy and the core law disagree, the core law wins.
+
 ## Overview
 
 This skill is the compact, high-leverage operating discipline for Hermes coding work.
@@ -207,12 +211,16 @@ If direct verification was not possible, downgrade the claim to `unverified`.
 
 ## Closeout Contract
 
-Every substantial completion summary should include:
+Every substantial completion summary should use the status labels below, in this order, then list the files changed:
 
-- **Summary**
+- **changed** — what was modified or produced
+- **verified** — the proof that actually ran
+- **unverified** — what exists but was not proven
+- **blocked** — the real constraint that stopped completion
+- **assumption** — what rests on inference rather than evidence
 - **Files touched**
-- **Verification evidence**
-- **Risks and unverified items**
+
+Sections may be empty, but the shape stays fixed so a reader can scan for what was proven.
 
 This keeps the final answer scan-friendly and honest.
 

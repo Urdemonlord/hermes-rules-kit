@@ -228,7 +228,7 @@ If you want the 20/80 setup:
 3. read `docs/hermes-tool-mapping.md`
 4. use `examples/verifier-report.md` and `examples/research-report.md` as output shapes
 5. study `examples/failure-modes/` to understand the failure classes the rules are designed to prevent
-6. adopt mirrored skills as modular overlays
+6. adopt the packaged skills as modular overlays
 
 ## Who this is for
 
@@ -293,7 +293,7 @@ Minimum enforcement for contributors and adopters:
 - `examples/` — concrete report and closeout shapes
 - `examples/kanban-swarm-workflow.md` — worked example of a Kanban-backed Meow swarm task graph
 - `examples/failure-modes/` — before/after examples of agent failure classes this kit is meant to prevent
-- `skills/` — public mirror of the local Hermes skill set
+- `skills/` — curated public edition of the local Hermes skill set (portable rules only)
 - `skills/index.md` — selection guide and comparison overview
 - `docs/releases/v0.2.0.md` — release notes for swarm mode, worker pack, and Kanban example
 - `skills/meow-swarm-mode/` — optional skill for Kanban-backed swarm escalation policy
@@ -314,8 +314,11 @@ That means:
 
 ## Release
 
-Current public release target:
+Current public release:
+- `v0.2.0` — swarm mode, worker skill pack, Kanban workflow example
 - `v0.1.1` — portability framing, verification contract tightening, and failure-mode library
+
+See `docs/releases/`.
 
 ## Contributing
 

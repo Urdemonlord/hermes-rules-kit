@@ -1,5 +1,8 @@
 # Closeout Template
 
+> Canonical closeout shape, required by `docs/verification-contract.md`.
+> Examples and skills must use this same order.
+
 ## Summary
 [One short paragraph describing the outcome]
 

@@ -1,5 +1,9 @@
 # Core Runtime Law
 
+This is the canonical copy of the law.
+`templates/AGENTS.template.md`, `templates/paste-into-your-agent.md`, and `skills/hermes-agentic-coding-20-80/SKILL.md` carry derived, self-contained copies.
+If a derived copy and this file disagree, this file wins.
+
 ## Purpose
 
 Core Runtime Law defines the smallest always-on operating contract for Hermes when the goal is serious execution rather than pleasant-sounding output.
